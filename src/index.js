@@ -4,12 +4,15 @@ dotenv.config();
 
 const app = express();
 
+app.set("views", "./views");
+app.set("view engine", "ejs");
+
 app.get("/", function (req, res) {
-  res.send("hello from server");
+  res.render("home");
 });
 
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(`Server start on port : ${port}`);
+  console.log(`Server start on port test : ${port}`);
 });
