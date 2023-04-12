@@ -16,10 +16,6 @@ app.use(express.static("../public"));
 // Configure multer
 const upload = multer({ dest: "upload/" });
 
-app.get("/upload", function (req, res) {
-  res.send("Test upload");
-});
-
 app.post("/upload", upload.single("csvFile"), function (req, res) {
   const results = [];
   fs.createReadStream(req.file.path, "utf-8")
