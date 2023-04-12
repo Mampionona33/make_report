@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Mampionona33/make_report/issues"
   },
-  "homepage": "https://github.com/Mampionona33/make_report#readme"
+  "homepage": "https://github.com/Mampionona33/make_report#readme",
+  "devDependencies": {
+    "eslint": "^8.38.0"
+  }
 }
