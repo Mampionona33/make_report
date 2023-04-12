@@ -6,9 +6,17 @@
   <body>
     <h1>Bienvenue sur mon site web</h1>
     <p>Ce site web est en cours de construction .</p>
-    <form>
-      <input type="file" accept=".csv" id="csvFileInput" />
-      <button type="button" onclick="handleFileUpload()">Upload</button>
+    <form
+      action="/upload"
+      id="csv-form"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <input type="file" id="csv-file" name="csvFile" accept=".csv" />
+      <button type="submit">Envoyer</button>
+    </form>
+    <form action="upload" method="get">
+      <input type="submit" value="test" />
     </form>
   </body>
 </html>

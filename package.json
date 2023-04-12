@@ -5,9 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel-watch src -d dist",
-    "dev": "concurrently \"babel-watch src \" \"nodemon --watch src --watch views dist/index.js\"",
-    "start": "node index.js"
+    "build": "babel src -d dist --watch",
+    "dev": "concurrently \"npm run build\" \"nodemon --watch src --watch views dist/index.js\"",
+    "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,11 +26,14 @@
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.21.4",
     "babel-watch": "^7.7.2",
+    "concurrently": "^8.0.1",
     "eslint": "^8.38.0",
     "nodemon": "^2.0.22"
   },
   "dependencies": {
+    "csv-parser": "^3.0.0",
     "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1"
   }
 }
