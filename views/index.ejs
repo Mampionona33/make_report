@@ -7,16 +7,19 @@
     <h1>Bienvenue sur mon site web</h1>
     <p>Ce site web est en cours de construction .</p>
     <form
-      action="/upload"
+      action="/uploadOutage"
       id="csv-form"
       enctype="multipart/form-data"
       method="post"
     >
-      <input type="file" id="csv-file" name="csvFile" accept=".csv" required />
+      <input
+        title="uploadOutage"
+        placeholder="Upload Outagel"
+        type="file"
+        id="csv-file"
+        name="csvFile"
+      />
       <button type="submit">Envoyer</button>
-    </form>
-    <form action="upload" method="get">
-      <input type="submit" value="test" />
     </form>
   </body>
 </html>
