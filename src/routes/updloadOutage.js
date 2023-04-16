@@ -5,6 +5,7 @@ import multer from "multer";
 import checkUploadFile from "./middleware/checkUploadFile";
 import Outage from "../models/outageModel";
 import format from "format-duration";
+import db from "../db/conn";
 
 export const router = Router();
 
@@ -42,15 +43,35 @@ router.post(
         // Save data to database
         const outageData = Object.assign({}, results);
         const outages = Object.values(outageData).map((elem) => elem);
-        console.log([...outages]);
+        console.log(outages);
 
-        Outage.insertMany(outages)
-          .then(() => {
-            console.log("Data saved");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        async function saveOutages() {
+          try {
+            await db.once("open", () =>
+              console.log("Connection to database established")
+            );
+
+            const savedOutages = await Outage.insertMany(outages);
+            console.log(`${savedOutages.length} outages saved to database`);
+
+            await db.close(() => console.log("Connection to database closed"));
+          } catch (error) {
+            console.error(error);
+          }
+        }
+
+        saveOutages();
+
+        // Outage.insertMany(outages)
+        //   .then(() => {
+        //     console.log("Data saved");
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   })
+        //   .finally(() => {
+        //     console.log("End of process");
+        //   });
 
         const dtptNoCumul = sumOssDuration / 7 / 526;
         res.json({

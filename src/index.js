@@ -1,7 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import { router as uploadOutage } from "./routes/updloadOutage";
-import db from "./db/conn"; // must import db to connect to database at app start
 dotenv.config();
 
 const app = express();
