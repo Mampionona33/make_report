@@ -43,10 +43,12 @@ router.post(
         // Save data to database
         const outageData = Object.assign({}, results);
         const outages = Object.values(outageData).map((elem) => elem);
-        console.log(outages);
+        // console.log(outages);
 
         async function saveOutages() {
           try {
+            console.log("Send data");
+
             await db.once("open", () =>
               console.log("Connection to database established")
             );
@@ -55,32 +57,22 @@ router.post(
             console.log(`${savedOutages.length} outages saved to database`);
 
             await db.close(() => console.log("Connection to database closed"));
+            console.log("End of process");
           } catch (error) {
             console.error(error);
           }
         }
 
-        saveOutages();
-
-        // Outage.insertMany(outages)
-        //   .then(() => {
-        //     console.log("Data saved");
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   })
-        //   .finally(() => {
-        //     console.log("End of process");
-        //   });
-
-        const dtptNoCumul = sumOssDuration / 7 / 526;
-        res.json({
-          status: 200,
-          results,
-        });
-        // res.render("dailyReport", {
-        //   sumOssDuration: format(dtptNoCumul * 60 * 60 * 24 - 1),
-        // });
+        saveOutages()
+          .then(() => {
+            const dtptNoCumul = sumOssDuration / 7 / 526;
+            res.render("dailyReport", {
+              sumOssDuration: format(dtptNoCumul * 60 * 60 * 24 - 1),
+            });
+          })
+          .catch((err) => {
+            throw err;
+          });
       });
   }
 );
