@@ -3,6 +3,7 @@ import fs from "fs";
 import csvParser from "csv-parser";
 import multer from "multer";
 import checkUploadFile from "./middleware/checkUploadFile";
+import Outage from "../models/outageModel";
 import format from "format-duration";
 
 export const router = Router();
@@ -27,24 +28,38 @@ router.post(
       })
       .on("end", () => {
         // Delete upload csv from upload folder
-        if (fs.existsSync(req.file.path)) {
-          fs.unlink(req.file.path, (err) => {
-            if (err) {
-              console.log(err);
-            }
-          });
-        }
+        fs.unlink(req.file.path, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
 
         const sumOssDuration = results.reduce(
           (acc, cur) => acc + Number(cur["OOS Duration"]),
           0
         );
 
-        const dtptNoCumul = sumOssDuration / 7 / 526;
+        // Save data to database
+        const outageData = Object.assign({}, results);
+        const outages = Object.values(outageData).map((elem) => elem);
+        console.log([...outages]);
 
-        res.render("dailyReport", {
-          sumOssDuration: format(dtptNoCumul * 60 * 60 * 24 - 1),
+        Outage.insertMany(outages)
+          .then(() => {
+            console.log("Data saved");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        const dtptNoCumul = sumOssDuration / 7 / 526;
+        res.json({
+          status: 200,
+          results,
         });
+        // res.render("dailyReport", {
+        //   sumOssDuration: format(dtptNoCumul * 60 * 60 * 24 - 1),
+        // });
       });
   }
 );
