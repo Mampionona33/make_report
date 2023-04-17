@@ -9,5 +9,6 @@
       }
     ]
   ],
-  "sourceRoot": "./src"
+  "sourceRoot": "./src",
+  "ignore": ["./views/*"]
 }

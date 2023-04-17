@@ -1,0 +1,13 @@
+<div class="table-responsive float-start">
+  <table class="table">
+    <% for (let i = 0; i < 30; i+=7) { %>
+    <tr>
+      <% for (let j = i; j < i+7; j++) { %> <% if (j < 30) { %>
+      <td><%- include('calendarCell') %></td>
+      <% } else { %>
+      <td></td>
+      <% } %> <% } %>
+    </tr>
+    <% } %>
+  </table>
+</div>
