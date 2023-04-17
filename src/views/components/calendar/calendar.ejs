@@ -3,11 +3,15 @@
     <% for (let i = 0; i < 30; i+=7) { %>
     <tr>
       <% for (let j = i; j < i+7; j++) { %> <% if (j < 30) { %>
-      <td><%- include('calendarCell') %></td>
-      <% } else { %>
-      <td></td>
-      <% } %> <% } %>
+      <td onclick="handleClickCell(this)"><%- include('calendarCell') %></td>
+      <% } } %>
     </tr>
     <% } %>
   </table>
 </div>
+
+<script>
+  const handleClickCell = (element) => {
+    console.log(element);
+  };
+</script>
