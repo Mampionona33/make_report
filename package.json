@@ -51,6 +51,9 @@
     "rimraf": "^5.0.0"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.5",
+    "@fullcalendar/daygrid": "^6.1.5",
+    "@fullcalendar/web-component": "^6.1.5",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
