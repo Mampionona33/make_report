@@ -9,19 +9,12 @@
         "src"
       ],
       "extensions": "js"
-    },
-    "copy:views": {
-      "patterns": [
-        "src"
-      ],
-      "extensions": "ejs,js"
     }
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && babel src -d dist",
-    "copy:views": "rimraf dist/views && cross-env COPYFILE_DISABLE=true cp -R src/views dist/views || xcopy /I /S /Y src\\views\\ dist\\views\\",
-    "dev": "concurrently \"npm run build && npm run copy:views && nodemon --watch src --watch views dist/index.js\" \"npm run watch\" ",
+    "dev": "concurrently \"npm run build && nodemon --watch src --watch views dist/index.js\" \"npm run watch\" ",
     "start": "node dist/index.js",
     "watch": "npm-watch"
   },
@@ -56,7 +49,6 @@
     "@fullcalendar/web-component": "^6.1.5",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
-    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "format-duration": "^3.0.2",
     "mongoose": "^7.0.3",

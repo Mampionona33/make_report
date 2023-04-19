@@ -7,13 +7,10 @@ const app = express();
 
 app.use("/public", express.static("public"));
 
-app.set("views", __dirname + "/views");
-app.set("view engine", "ejs");
-
 app.use(uploadOutage);
 
 app.get("/", function (req, res) {
-  res.render("index");
+  res.send("Hello from server");
 });
 
 const port = process.env.PORT || 3000;
