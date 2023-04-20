@@ -5,11 +5,26 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import { useAppDispatch } from "@/hooks/hooks";
 import { openModal } from "./Modal/ModalSlice";
+import { DayCellContentArg } from "@fullcalendar/core";
 
 const Calendar = () => {
   const [dateClicked, setDateClicked] = useState(false);
   const dispatch = useAppDispatch();
 
+  const handleDayCellContent = (arg: DayCellContentArg) => {
+    const container = document.createElement("div");
+
+    if (arg) {
+      console.log(arg);
+      const button = document.createElement("button");
+      const text = document.createTextNode(arg.dayNumberText);
+      button.innerHTML = "Click me";
+      container.appendChild(text);
+      container.appendChild(button);
+      const arrayOfDomNodes = [container];
+      return { domNodes: arrayOfDomNodes };
+    }
+  };
   const handleDateClick = (info: DateClickArg) => {
     setDateClicked(!dateClicked);
     dispatch(openModal());
@@ -32,6 +47,7 @@ const Calendar = () => {
           end: "today dayGridYear,dayGridMonth,timeGridWeek",
         }}
         dateClick={handleDateClick}
+        dayCellContent={handleDayCellContent}
       />
     </React.Fragment>
   );
