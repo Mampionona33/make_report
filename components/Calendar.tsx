@@ -5,12 +5,10 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 
 const Calendar = () => {
-  const [dateClicked, setDateClicked] = useState(true);
+  const [dateClicked, setDateClicked] = useState(false);
 
   const handleDateClick = (info: DateClickArg) => {
     setDateClicked(!dateClicked);
-
-    alert("test");
 
     if (dateClicked) {
       info.dayEl.style.backgroundColor = "red";
