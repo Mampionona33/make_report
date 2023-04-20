@@ -3,13 +3,16 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
+import { useAppDispatch } from "@/hooks/hooks";
+import { openModal } from "./Modal/ModalSlice";
 
 const Calendar = () => {
   const [dateClicked, setDateClicked] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleDateClick = (info: DateClickArg) => {
     setDateClicked(!dateClicked);
-
+    dispatch(openModal());
     if (dateClicked) {
       info.dayEl.style.backgroundColor = "red";
     } else {

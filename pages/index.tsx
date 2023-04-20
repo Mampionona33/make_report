@@ -1,4 +1,5 @@
 import Calendar from "@/components/Calendar";
+import Modal from "@/components/Modal/Modal";
 import React from "react";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
       <div className="flex flex-1 items-center justify-center">
         <div className="w-full h-80vh p-5">
           <Calendar />
+          <Modal />
         </div>
       </div>
     </main>
