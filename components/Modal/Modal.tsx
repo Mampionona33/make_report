@@ -1,8 +1,12 @@
 import { useAppDispatch, useAppSelector } from "./../../hooks/hooks";
 import { closeModal } from "./ModalSlice";
-import React from "react";
+import React, { ReactElement, ReactNode } from "react";
 
-const Modal = () => {
+interface IModalProps {
+  children?: ReactNode;
+}
+
+const Modal = ({ children }: IModalProps) => {
   const isOpen = useAppSelector((state) => state.modal.open);
   const dispatch = useAppDispatch();
 
@@ -10,19 +14,19 @@ const Modal = () => {
     dispatch(closeModal());
   };
 
-  console.log(isOpen);
-
   return (
-    <React.Fragment>
-      {isOpen ? (
-        <div className="modal-content">
-          <button className="modal-close" onClick={handleCloseModal}>
-            Close
-          </button>
-          <h2>Modal content goes here</h2>
+    <>
+      {isOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <button className="modal-close" onClick={handleCloseModal}>
+              &times;
+            </button>
+            {children}
+          </div>
         </div>
-      ) : null}
-    </React.Fragment>
+      )}
+    </>
   );
 };
 
