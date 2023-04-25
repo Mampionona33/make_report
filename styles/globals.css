@@ -28,3 +28,12 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.button {
+  margin: 0.2rem;
+  background-color: gray;
+  padding: 0.2rem 1rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: #fff;
+}

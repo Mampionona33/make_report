@@ -7,6 +7,7 @@ const SideBarRight = () => {
         <input type="file" value="import CSV" accept=".csv" />
         <input
           type="button"
+          className="button"
           value={"Submit"}
           onClick={(ev) => console.log("test")}
         />
