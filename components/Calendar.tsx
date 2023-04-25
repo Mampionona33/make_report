@@ -23,7 +23,7 @@ const Calendar = () => {
   return (
     <React.Fragment>
       <FullCalendar
-        contentHeight={"80vh"}
+        contentHeight={"75vh"}     
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView={"dayGridMonth"}
         headerToolbar={{

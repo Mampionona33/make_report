@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 @import url("../components/Modal/Modal.css");
-
+@import url("home.css");
+@import url("SideBarRight.css");
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

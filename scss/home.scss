@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+  width: 100vw;
+}
+.home_container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  align-items: center;
+  &__items {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    height: 100%;
+    &--right {
+      height: 100%;
+      display: flex;
+      background-color: green;
+      max-width: 20%;
+    }
+  }
+}
+.fc {
+  width: 100%;
+}

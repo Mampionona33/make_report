@@ -1,14 +1,18 @@
 import Calendar from "@/components/Calendar";
 import Modal from "@/components/Modal/Modal";
+import SideBarRight from "@/components/SideBarRight/SideBarRight";
 import React from "react";
 
 export default function Home() {
   return (
-    <main className="container mx-auto box-border h-screen flex items-center">
-      <div className="flex flex-1 items-center justify-center">
-        <div className="w-full h-80vh p-5">
-          <Modal />
+    <main className="main">
+      <div className="home_container">
+        <Modal />
+        <div className="home_container__items w-full p-10">
           <Calendar />
+        </div>
+        <div className="home_container__items--right">
+          <SideBarRight />
         </div>
       </div>
     </main>
