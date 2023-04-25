@@ -12,7 +12,7 @@ const Calendar = () => {
 
   const handleDateClick = (info: DateClickArg) => {
     setDateClicked(!dateClicked);
-    dispatch(openModal());
+    // dispatch(openModal());
     if (dateClicked) {
       info.dayEl.style.backgroundColor = "red";
     } else {
