@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import CSVReader from "react-csv-reader";
 
 const SideBarRight = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
 
-  const handleOnFileLoad = (csvData) => {
+  const handleOnFileLoad = (csvData: any[]) => {
     setData(csvData);
   };
 
