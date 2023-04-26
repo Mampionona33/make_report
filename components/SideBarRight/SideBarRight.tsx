@@ -1,15 +1,31 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
+import CSVReader from "react-csv-reader";
 
 const SideBarRight = () => {
-  const [file, setFile] = useState<File | undefined>();
-  const handleInputChange = (ev: ChangeEvent<HTMLInputElement>) => {
-    setFile(ev.target.files?.[0]);
+  const [data, setData] = useState([]);
+
+  const handleOnFileLoad = (csvData) => {
+    setData(csvData);
   };
+
   return (
-    <form className="sideBarContainer" action="">
-      <input type="file" accept=".csv" onChange={handleInputChange} />
-      <input type="submit" className="button" value={"Submit"} />
-    </form>
+    <div className="sideBarContainer">
+      <CSVReader
+        onFileLoaded={handleOnFileLoad}
+        parserOptions={{ header: true }}
+        inputId="csv-input"
+        inputStyle={{ display: "none" }}
+      />
+      <label htmlFor="csv-input" className="button">
+        Upload CSV
+      </label>
+      <input
+        type="submit"
+        className="button"
+        value="Submit"
+        onClick={() => console.log(data)}
+      />
+    </div>
   );
 };
 
