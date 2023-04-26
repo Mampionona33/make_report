@@ -37,3 +37,7 @@ body {
   text-transform: uppercase;
   color: #fff;
 }
+
+.label {
+  text-transform: uppercase;
+}

@@ -18,7 +18,9 @@ const SideBarRight = () => {
     <div className="sideBarContainer">
       <div className="sideBarContainer__form">
         <div className="sideBarContainer__form__items">
-          <label htmlFor="date-picker">Select date</label>
+          <label htmlFor="date-picker" className="label">
+            select repporting date
+          </label>
           <DatePicker
             inline
             id="date-picker"
