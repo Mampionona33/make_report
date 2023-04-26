@@ -1,10 +1,18 @@
 .sideBarContainer {
-  margin: 1rem;
-  display: flex;
-  width: fit-content;
-  height: fit-content;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: start;
-  gap: 1rem;
+  background-color: #fff;
+  margin: 1rem 1rem;
+  border-radius: 12px;
+  &__form {
+    margin: 1rem;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+    gap: 1rem;
+    &__items {
+      gap: 1rem;
+    }
+  }
 }
