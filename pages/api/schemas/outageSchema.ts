@@ -1,27 +1,32 @@
 const mongoose = require("mongoose");
 
-const outageSchemas = new mongoose.Schema(
-  {
-    "TT Reference": { type: String, unique: true },
-    Number: { type: String },
-    State: { type: String },
-    Site: { type: String },
-    Tenant: { type: String },
-    "OOS Start Time": { type: String },
-    "OOS End Time": { type: String },
-    "OOS Duration": { type: Number },
-    "Reconciled OOS Duration": { type: Number },
-    "Primary Cause": { type: String },
-    "Root Cause 1": { type: String },
-    "Root Cause 2": { type: String },
-    "Fault Resolution": { type: String },
-    "Resolution Comments": { type: String },
-    Created: { type: String },
-    Opened: { type: String },
-  },
-  {
-    timestamps: true,
-  }
-);
+const Outage = new mongoose.Schema({
+  "TT Reference": { type: String },
+  "Assigned to": String,
+  Created: String,
+  "Customer TT Reference": String,
+  "Fault Resolution": String,
+  Number: String,
+  "OOS Duration": Number,
+  "OOS End Time": String,
+  "OOS Start Time": String,
+  Opened: String,
+  "Primary Cause": String,
+  "Reconciled OOS Duration": Number,
+  "Reconciled OOS End Time": String,
+  "Reconciled OOS Start Time": String,
+  "Resolution Comments": String,
+  "Root Cause 1": String,
+  "Root Cause 2": String,
+  "Root Cause 3": String,
+  Site: String,
+  State: String,
+  Tenant: String,
+});
 
-export default outageSchemas;
+const outageSchema = new mongoose.Schema({
+  outages: [Outage],
+  repportDate: { type: String, required: true },
+});
+
+export default outageSchema;

@@ -6,12 +6,56 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker.css";
 
-const SideBarRight = () => {
-  const [data, setData] = useState<any>([]);
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
+interface ICsvData {
+  "TT Reference": string;
+  "Assigned to": string;
+  Created: string;
+  "Customer TT Reference": string;
+  "Fault Resolution": string;
+  Number: string;
+  "OOS Duration": string;
+  "OOS End Time": string;
+  "OOS Start Time": string;
+  Opened: string;
+  "Primary Cause": string;
+  "Reconciled OOS Duration": Number;
+  "Reconciled OOS End Time": string;
+  "Reconciled OOS Start Time": string;
+  "Resolution Comments": string;
+  "Root Cause 1": string;
+  "Root Cause 2": string;
+  "Root Cause 3": string;
+  Site: string;
+  State: string;
+  Tenant: string;
+}
 
-  const handleOnFileLoad = (csvData: any[]) => {
-    setData(csvData);
+const SideBarRight = () => {
+  const [csvData, setCsvData] = useState<any>([]);
+  const [repportDate, setRepportDate] = useState<Date | null>(new Date());
+
+  const handleOnFileLoad = (csvData: ICsvData[]) => {
+    setCsvData(csvData);
+  };
+
+  const handleSubmit = async (ev: React.FormEvent<HTMLInputElement>) => {
+    ev.preventDefault();
+    try {
+      const API_BASED_URL = "/api/routes" || process.env.API_BASED_URL;
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          outages: csvData,
+          repportDate,
+        }),
+      };
+      const res = await fetch(`${API_BASED_URL}/outage`, options);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -24,9 +68,9 @@ const SideBarRight = () => {
           <DatePicker
             inline
             id="date-picker"
-            selected={startDate}
+            selected={repportDate}
             dateFormat={"dd/mm/yyyy"}
-            onChange={(date: Date) => setStartDate(date)}
+            onChange={(date: Date) => setRepportDate(date)}
           />
         </div>
         <div className="sideBarContainer__form__items">
@@ -44,7 +88,7 @@ const SideBarRight = () => {
           type="submit"
           className="button"
           value="Submit"
-          onClick={() => console.log(startDate, data)}
+          onClick={handleSubmit}
         />
       </div>
     </div>
