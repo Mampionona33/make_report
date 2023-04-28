@@ -40,6 +40,7 @@ const SideBarRight = () => {
 
   const handleSubmit = async (ev: React.FormEvent<HTMLInputElement>) => {
     ev.preventDefault();
+
     try {
       const API_BASED_URL = "/api/routes" || process.env.API_BASED_URL;
       const options = {
