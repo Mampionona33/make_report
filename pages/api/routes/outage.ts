@@ -1,7 +1,7 @@
 import dbConnect from "@/lib/dbConnect";
-import Outage from "../models/outageModel";
 import { Request, Response } from "express";
 import jsonMiddleware from "./../middleware/jsonMiddleware";
+import Outages from "../models/Outage/outageModel";
 
 export default async function outage(req: Request, res: Response) {
   const { method } = req;
@@ -10,7 +10,7 @@ export default async function outage(req: Request, res: Response) {
   switch (method) {
     case "GET":
       try {
-        const outages = await Outage.find({});
+        const outages = await Outages.find({});
         res.status(200).json({ success: true, data: outages });
       } catch (error) {
         res.status(400).json({ success: false });
@@ -19,7 +19,7 @@ export default async function outage(req: Request, res: Response) {
     case "POST":
       try {
         const outages = req.body;
-        await Outage.create(outages);
+        await Outages.create(outages);
         res.status(201).json({ success: true });
       } catch (error) {
         console.log(error);

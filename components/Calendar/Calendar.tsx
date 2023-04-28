@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
-import { useAppDispatch } from "@/hooks/hooks";
-import { openModal } from "./Modal/ModalSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { openModal } from "../Modal/ModalSlice";
+import { fetchOutageAsync } from "@/redux/outagesSlice";
 
 const Calendar = () => {
   const [dateClicked, setDateClicked] = useState(false);
   const dispatch = useAppDispatch();
+  const outages = useAppSelector((state) => state.outages.outages);
 
   const handleDateClick = (info: DateClickArg) => {
     setDateClicked(!dateClicked);
-    // dispatch(openModal());
+
     if (dateClicked) {
       info.dayEl.style.backgroundColor = "red";
     } else {
@@ -20,10 +22,20 @@ const Calendar = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(fetchOutageAsync());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (outages.length > 0) {
+      console.log(outages);
+    }
+  }, [outages]);
+
   return (
     <React.Fragment>
       <FullCalendar
-        contentHeight={"75vh"}     
+        contentHeight={"75vh"}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView={"dayGridMonth"}
         headerToolbar={{

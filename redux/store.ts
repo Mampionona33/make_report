@@ -1,8 +1,12 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import modalReducer from "../components/Modal/ModalSlice";
+import calendarReducer from "./../components/Calendar/calendarSlice";
+import outagesReducer from "./../redux/outagesSlice";
 
 const rootReducer = combineReducers({
   modal: modalReducer,
+  calendar: calendarReducer,
+  outages: outagesReducer,
 });
 
 const store = configureStore({

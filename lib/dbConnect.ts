@@ -1,8 +1,10 @@
-import mongoose from "mongoose";
-import { Global } from "node";
 declare const global: Global;
+import { Global } from "node";
+import mongoose from "mongoose";
 
-let MONGODB_URI = process.env.MONGODB_URI;
+let MONGODB_URI =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://ramamps33:<password>@cluster0.m8eactz.mongodb.net/make-report?retryWrites=true&w=majority";
 
 const MONGODB_MDP = process.env.MONGODB_MDP;
 
@@ -10,9 +12,10 @@ if (MONGODB_MDP && MONGODB_MDP.length > 0) {
   MONGODB_URI = MONGODB_URI?.replace("<password>", MONGODB_MDP);
 }
 
-console.log("MONGODB_MDP :", MONGODB_MDP);
-console.log("MONGODB_URI :", MONGODB_URI);
+// console.log("MONGODB_MDP :", MONGODB_MDP);
+// console.log("MONGODB_URI :", MONGODB_URI);
 
+console.log(MONGODB_URI);
 if (!MONGODB_URI) {
   throw new Error(
     "Please define the MONGODB_URI environment variable inside .env.local"

@@ -1,4 +1,4 @@
-import Calendar from "@/components/Calendar";
+import Calendar from "@/components/Calendar/Calendar";
 import Modal from "@/components/Modal/Modal";
 import SideBarRight from "@/components/SideBarRight/SideBarRight";
 import React from "react";
