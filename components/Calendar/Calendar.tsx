@@ -6,6 +6,7 @@ import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { openModal } from "../Modal/ModalSlice";
 import { fetchOutageAsync } from "@/redux/outagesSlice";
+import { log } from "console";
 
 const Calendar = () => {
   const [dateClicked, setDateClicked] = useState(false);
@@ -28,7 +29,18 @@ const Calendar = () => {
 
   useEffect(() => {
     if (outages.length > 0) {
+      /* 
+        daylyDtptNonCumul = ossDurations / nbTotalSite / 7 "day";
+        daylyDtptCumul = somme (daylyDtptNonCumul de 1mois) / daylyDtptNonCumul (date now -1 ) / nombre jour -1 ;
+      */
       console.log(outages);
+      // const test = outages[0].outages.map((out) => out["OOS Duration"]);
+      // console.log(test);
+
+      const ossDurations = outages[0].outages
+        .map((out) => out["OOS Duration"])
+        .reduce((acc, val) => (val !== undefined ? acc + val : acc));
+      console.log(ossDurations);
     }
   }, [outages]);
 
