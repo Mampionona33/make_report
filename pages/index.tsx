@@ -11,7 +11,7 @@ export default function Home() {
         <div className="home_container__items w-3/4 p-10">
           <Calendar />
         </div>
-        <div className="home_container__items--right">
+        <div className="home_container__items--right  w-1/4 ">
           <SideBarRight />
         </div>
       </div>
