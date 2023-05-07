@@ -1,6 +1,6 @@
 @import url("../components/Modal/Modal.css");
-@import url("home.css");
-@import url("SideBarRight.css");
+@import "home.css";
+@import "SideBarRight.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

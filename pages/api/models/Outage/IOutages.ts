@@ -3,7 +3,7 @@ export interface IOutages {
   repportDate: Date;
 }
 
-interface IOutage {
+export interface IOutage {
   "TT Reference": string;
   "Assigned to": string;
   Created: string;

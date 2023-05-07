@@ -9,6 +9,7 @@
   box-sizing: border-box;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: space-between;
   &__items {
     display: flex;
     justify-content: center;

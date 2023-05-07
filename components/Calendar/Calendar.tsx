@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { openModal } from "../Modal/ModalSlice";
 import { fetchOutageAsync } from "@/redux/outagesSlice";
 import { log } from "console";
+import { IOutages } from "@/pages/api/models/Outage/IOutages";
 
 const Calendar = () => {
   const [dateClicked, setDateClicked] = useState(false);
@@ -38,9 +39,9 @@ const Calendar = () => {
       // console.log(test);
 
       const ossDurations = outages[0].outages
-        .map((out) => out["OOS Duration"])
+        .map((out: any) => out["OOS Duration"])
         .reduce((acc, val) => (val !== undefined ? acc + val : acc));
-      console.log(ossDurations);
+      console.log(outages[0]);
     }
   }, [outages]);
 
