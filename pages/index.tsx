@@ -8,7 +8,7 @@ export default function Home() {
     <main className="main">
       <div className="home_container">
         <Modal />
-        <div className="home_container__items w-full p-10">
+        <div className="home_container__items w-3/4 p-10">
           <Calendar />
         </div>
         <div className="home_container__items--right">
