@@ -41,7 +41,7 @@ const Calendar = () => {
       const ossDurations = outages[0].outages
         .map((out: any) => out["OOS Duration"])
         .reduce((acc, val) => (val !== undefined ? acc + val : acc));
-      console.log(outages[0]);
+      // console.log(outages[0]);
     }
   }, [outages]);
 

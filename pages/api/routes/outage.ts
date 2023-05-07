@@ -3,11 +3,11 @@ import { NextFunction, Request, Response } from "express";
 import jsonMiddleware from "./../middleware/jsonMiddleware";
 import Outages from "../models/Outage/outageModel";
 import checkDate from "../middleware/checkDate";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function outage(
-  req: Request,
-  res: Response,
-  next: NextFunction
+  req: NextApiRequest,
+  res: NextApiResponse
 ) {
   const { method } = req;
   await dbConnect();
@@ -24,10 +24,10 @@ export default async function outage(
     case "POST":
       try {
         const outages = req.body;
-        if (checkDate(req, res, next)) {
-          await Outages.create(outages);
-          res.status(201).json({ success: true });
-        }
+        // if (checkDate(req, res)) {
+        await Outages.create(outages);
+        res.status(201).json({ success: true });
+        // }
       } catch (error) {
         console.log(error);
         // res.status(400).json({ success: false, error });
