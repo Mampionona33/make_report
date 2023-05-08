@@ -1,9 +1,8 @@
 import dbConnect from "@/lib/dbConnect";
-import { NextFunction, Request, Response } from "express";
 import jsonMiddleware from "./../middleware/jsonMiddleware";
 import Outages from "../models/Outage/outageModel";
-import checkDate from "../middleware/checkDate";
 import { NextApiRequest, NextApiResponse } from "next";
+import checkUploadDate from "../middleware/checkUploadDate";
 
 export default async function outage(
   req: NextApiRequest,
@@ -24,10 +23,10 @@ export default async function outage(
     case "POST":
       try {
         const outages = req.body;
-        // if (checkDate(req, res)) {
-        await Outages.create(outages);
-        res.status(201).json({ success: true });
-        // }
+        checkUploadDate(req, res, async () => {
+          await Outages.create(outages);
+          res.status(201).json({ success: true });
+        });
       } catch (error) {
         console.log(error);
         // res.status(400).json({ success: false, error });
