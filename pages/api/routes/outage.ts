@@ -3,6 +3,7 @@ import jsonMiddleware from "./../middleware/jsonMiddleware";
 import Outages from "../models/Outage/outageModel";
 import { NextApiRequest, NextApiResponse } from "next";
 import checkUploadDate from "../middleware/checkUploadDate";
+import removeNullTTRef from "../middleware/removeNullTTRef";
 
 export default async function outage(
   req: NextApiRequest,
@@ -24,8 +25,10 @@ export default async function outage(
       try {
         const outages = req.body;
         checkUploadDate(req, res, async () => {
-          await Outages.create(outages);
-          res.status(201).json({ success: true });
+          removeNullTTRef(req, res, async () => {
+            await Outages.create(outages);
+            res.status(201).json({ success: true });
+          });
         });
       } catch (error) {
         console.log(error);
@@ -38,4 +41,4 @@ export default async function outage(
   }
 }
 
-export const middleware = jsonMiddleware;
+export const middleware = [jsonMiddleware, checkUploadDate];
